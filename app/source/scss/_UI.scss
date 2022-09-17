@@ -1,0 +1,35 @@
+.input {
+    border: 1px solid black;
+
+    font-weight: 600;
+
+    padding: 0.75rem 1.25rem;
+
+    transition: 200ms;
+
+
+}
+
+.button-circle {
+    background: rgb(77,219,101);
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: 200ms;
+
+    width: 4rem;
+    min-width: 4rem;
+    height: 4rem;
+
+    &:hover {
+        background: rgb(69, 197, 91);
+    }
+
+    &:active {
+        background: rgb(61, 171, 79);
+    }
+}

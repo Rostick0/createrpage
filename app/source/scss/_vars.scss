@@ -1,0 +1,21 @@
+.container {
+    margin: 0 auto;
+
+    max-width: 1170px;
+}
+
+.section-mb-default {
+    section {
+        margin-bottom: 3.5rem;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+
+@media (max-width: 1170px) {
+    .container {
+        padding: 0 3%;
+    }
+}

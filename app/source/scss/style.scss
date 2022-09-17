@@ -1,0 +1,82 @@
+@import './reset';
+@import './vars';
+@import './UI';
+
+html, body {
+    font-family: Arial;
+    font-size: 16px;
+    font-weight: 600;
+
+    min-height: 100%;
+}
+
+.wrapper  {
+    display: flex;
+
+    overflow: hidden;
+
+    min-height: 100vh;
+}
+
+.main {
+    background: #6301a2;
+
+    color: #fff;
+
+    flex: 0 0 50%;
+
+    padding: 3rem;
+}
+
+.main__title {
+    font-size: 1.75rem;
+    font-weight: 600;
+}
+
+.form__title {
+    margin-bottom: 1.5rem;
+}
+
+.form__inputs {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+}
+
+.form__button {
+    margin-top: 1.25rem;
+    margin-left: auto;
+}
+
+.info__subtitle {
+    font-size: 1rem;
+
+    margin-bottom: 0.625rem;
+}
+
+.info__list {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem
+}
+
+.info__item_title {
+    @extend .info__subtitle;
+}
+
+.info__item_data {
+    font-size: 1.25rem;
+}
+
+.map {
+    flex: 0 0 50%;
+}
+
+
+
+
+@media (max-width: 768px) {
+    .wrapper {
+        flex-direction: column;
+    }
+}
