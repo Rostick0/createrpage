@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/style.css">
-    <title>Добавите свою комп</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Добавите свою компанию</title>
 </head>
 
 <body>
@@ -16,12 +16,12 @@
                 Добавить компанию
             </h1>
             <div class="form__inputs">
-                <input class="input" type="text" placeholder="Название компании">
-                <input class="input" type="text" placeholder="Сфера деятельности">
-                <input class="input" type="text" placeholder="Адрес (перетащите маркер на карте)" readonly>
-                <input class="input" type="tel" placeholder="Телефоны">
-                <input class="input" type="text" placeholder="Website">
-                <input class="input" type="email" placeholder="Email">
+                <input class="input" type="text" placeholder="Название компании" name="company_name">
+                <input class="input" type="text" placeholder="Сфера деятельности" name="category">
+                <input class="input" type="text" placeholder="Адрес (перетащите маркер на карте)" name="cords" readonly>
+                <input class="input" type="tel" placeholder="Телефоны (через запятую)" name="telephone">
+                <input class="input" type="text" placeholder="Website" name="website">
+                <input class="input" type="email" placeholder="Email" name="email">
             </div>
             <button class="form__button button-circle">
                 <svg width="2rem" height="2rem" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -32,27 +32,35 @@
         </form>
         <div class="map" id="map"></div>
     </div>
-    <script defer src="./js/script.js"></script>
-    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript">
-    </script>
+    <? require_once './components/scripts.php' ?>
     <script type="text/javascript">
+        const inputCords = document.getElementsByName("cords")[0];
+
         ymaps.ready(init);
+
         function init() {
             const myMap = new ymaps.Map("map", {
-                center: [55.76, 37.64],
-                zoom: 13
-            }),
+                    center: [55.752, 37.615],
+                    zoom: 13,
+                    controls: ['geolocationControl']
+                }),
             myPlacemark = new ymaps.Placemark(myMap.getCenter(), {
-                hintContent: 'Выберите',
+                hintContent: 'Организация',
             }, {
                 iconLayout: 'default#image',
-                iconImageHref: './img/map_icon.svg',
+                iconImageHref: '/img/map_icon.svg',
                 iconImageSize: [32, 32],
-                iconImageOffset: [-5, -38]
-                mousemove: true
+                iconImageOffset: [-5, -38],
+			    draggable: true
             });
 
-            myMap.geoObjects
+            myPlacemark.events.add('dragend', function(e){
+			const cord = e.get('target').geometry.getCoordinates();
+                console.log(cord);
+                inputCords.value = cord[0].toString().slice(0, 5) + ', ' + cord[1].toString().slice(0, 5);
+            });
+
+            return myMap.geoObjects
                 .add(myPlacemark);
         }
     </script>

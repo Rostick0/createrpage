@@ -10,11 +10,11 @@ require_once './model/company.php';
 require_once './controller/company.php';
 
 switch ($uri) {
-    case 'create':
+    case '/create':
         require_once './create.php';
         break;
     default:
-        require_once './index.php';
+        require_once './info.php';
 }
 
 ?>

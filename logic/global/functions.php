@@ -14,10 +14,6 @@ function replaceSpaceDash($string) {
     return $result;
 }
 
-// replaceDashSpace($string) {
-    
-// }
-
 function removeComma($string) {
     return str_replace(',' , '', $string);
 }
@@ -64,6 +60,10 @@ function replaceCommaDiv($elem) {
     }
 
     return $result;
+}
+
+function protectedData($data) {
+    return trim(htmlspecialchars(addcslashes($data)));
 }
 
 ?>
