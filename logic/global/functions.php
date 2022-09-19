@@ -63,7 +63,7 @@ function replaceCommaDiv($elem) {
 }
 
 function protectedData($data) {
-    return trim(htmlspecialchars(addcslashes($data)));
+    return htmlspecialchars(trim(addslashes($data)));
 }
 
 ?>

@@ -8,10 +8,10 @@ class Company {
         return $query->fetch_assoc();
     }
 
-    static public function create() {
+    static public function create($name, $email, $phone, $website,$lon, $lat, $category) {
         global $database;
 
-        return $database->query("INSERT INTO `company`(`id`, `name`, `city_name`, `geometry_name`, `post_code`, `phone`, `email`, `website`, `vkontakte`, `instagram`, `lon`, `lat`, `category`, `subcategory`) VALUES ('[value-1]','[value-2]','[value-3]','[value-4]','[value-5]','[value-6]','[value-7]','[value-8]','[value-9]','[value-10]','[value-11]','[value-12]','[value-13]','[value-14]')");
+        return $database->query("INSERT INTO `company`(`name`, `phone`, `email`, `website`, `lon`, `lat`, `category`, `subcategory`) VALUES ('$name','$phone','$email','$website','$lon','$lat','$category','$category')");
     }
 }
 
