@@ -2,17 +2,13 @@
 // название компании-род-деятельности
 require_once 'require.php';
 
-$company = Company::get(null, null, 1);
+$name = str_replace(['-'], '%', urldecode(addslashes($segments[0])));
+$subcategory = str_replace(['-'], '%', urldecode(addslashes($segments[1])));
+$id = (int) $segments[2];
 
-var_dump($company);
-
-var_dump($_GET);
-
-// echo mb_strtolower(removeComma(replaceSpaceDash($company['name'])));
+$company = Company::get($name, $subcategory, $id);
 
 // echo mb_strtolower(deleteStringAfterComma(replaceSpaceDash($company['subcategory'])));
-
-// Website / Email
 
 ?>
 
@@ -23,7 +19,7 @@ var_dump($_GET);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
     <meta name="description" content="<?= $company['name'] ?>">
     <meta name="keywords" content="<?= $company['category'] ?>">
     <title><?= $company['name'] ?></title>
@@ -101,7 +97,7 @@ var_dump($_GET);
                 balloonContent: '<?= $company['name'] ?>'
             }, {
                 iconLayout: 'default#image',
-                iconImageHref: './img/map_icon.svg',
+                iconImageHref: '/img/map_icon.svg',
                 iconImageSize: [32, 32],
                 iconImageOffset: [-5, -38]
             });
