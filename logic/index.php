@@ -2,11 +2,11 @@
 // название компании-род-деятельности
 require_once 'require.php';
 
-$company = Company::get();
+$company = Company::get(null, null, 1);
 
 var_dump($company);
 
-// var_dump($_GET);
+var_dump($_GET);
 
 // echo mb_strtolower(removeComma(replaceSpaceDash($company['name'])));
 
@@ -101,7 +101,8 @@ var_dump($company);
                 balloonContent: '<?= $company['name'] ?>'
             }, {
                 iconLayout: 'default#image',
-                iconImageSize: [30, 34],
+                iconImageHref: './img/map_icon.svg',
+                iconImageSize: [32, 32],
                 iconImageOffset: [-5, -38]
             });
 
