@@ -75,12 +75,19 @@ textarea {
     padding: 0 3%;
   }
 }
+.text-error {
+  color: rgb(239, 13, 22);
+}
+
 .input {
   border: 1px solid black;
   font-weight: 600;
   padding: 0.75rem 1.25rem;
   -webkit-transition: 200ms;
   transition: 200ms;
+}
+.input._error {
+  border: 1px solid rgb(239, 13, 22);
 }
 
 .button-circle {
@@ -106,6 +113,19 @@ textarea {
 }
 .button-circle:active {
   background: rgb(61, 171, 79);
+}
+
+.page-404 {
+  -webkit-box-flex: 1 !important;
+  -ms-flex: 1 1 100% !important;
+  flex: 1 1 100% !important;
+  text-align: center;
+}
+.page-404 .page-404__title {
+  font-size: 4rem;
+}
+.page-404 .page-404__subtitle {
+  font-size: 1.75rem;
 }
 
 html, body {
@@ -150,6 +170,9 @@ html, body {
   -ms-flex-direction: column;
   flex-direction: column;
   row-gap: 1rem;
+}
+.form__inputs .text-error {
+  margin-top: -0.75rem;
 }
 
 .form__button {

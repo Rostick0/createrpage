@@ -6,6 +6,10 @@ $id = (int) $segments[2];
 
 $company = Company::get($name, $subcategory, $id);
 
+if (!$company) {
+    require_once __DIR__ . './404.php';
+}
+
 ?>
 
 <!DOCTYPE html>

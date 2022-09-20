@@ -1,6 +1,7 @@
 @import './reset';
 @import './vars';
 @import './UI';
+@import './page-404';
 
 html, body {
     font-family: Arial;
@@ -41,6 +42,10 @@ html, body {
     display: flex;
     flex-direction: column;
     row-gap: 1rem;
+
+    .text-error {
+        margin-top: -0.75rem;
+    }
 }
 
 .form__button {

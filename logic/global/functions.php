@@ -65,5 +65,5 @@ function replaceCommaDiv($elem) {
 function protectedData($data) {
     return htmlspecialchars(trim(addslashes($data)));
 }
-
+ 
 ?>

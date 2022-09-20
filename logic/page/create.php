@@ -9,6 +9,13 @@ $email = protectedData($_REQUEST['email']);
 
 $company_create = $_REQUEST['company_create'];
 
+if (isset($company_create)) {
+    $coords_explode = explode(',', $coords);
+    $lat = trim($coords_explode[0]);
+    $lon = trim($coords_explode[1]);
+    CompanyController::create($company_name, $email, $phone, $website, $lon, $lat, $category);
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -29,12 +36,44 @@ $company_create = $_REQUEST['company_create'];
                 Добавить компанию
             </h1>
             <div class="form__inputs">
-                <input class="input" type="text" placeholder="Название компании" name="company_name">
-                <input class="input" type="text" placeholder="Сфера деятельности" name="category">
-                <input class="input" type="text" placeholder="Адрес (перетащите маркер на карте)" name="coords" readonly>
+                <? if (isset($company_create) && $_SESSION['error_timeout_limit']): ?>
+                    <p class="text-error"><?= $_SESSION['error_timeout_limit'] ?></p>                    
+                <? endif; ?>
+                
+                <? if (isset($company_create) && $_SESSION['name_error']): ?>
+                    <input class="input _error" type="text" placeholder="Название компании" name="company_name">
+                    <p class="text-error"><?= $_SESSION['name_error'] ?></p>
+                    <? $_SESSION['name_error'] = null ?>
+                <? else: ?>
+                    <input class="input" type="text" placeholder="Название компании" name="company_name">
+                <? endif; ?>
+
+                <? if (isset($company_create) && $_SESSION['category_error']): ?>
+                    <input class="input _error" type="text" placeholder="Сфера деятельности" name="category">
+                    <p class="text-error"><?= $_SESSION['category_error'] ?></p>
+                    <? $_SESSION['category_error'] = null ?>
+                <? else: ?>
+                    <input class="input" type="text" placeholder="Сфера деятельности" name="category">
+                <? endif; ?>
+
+                <? if (isset($company_create) && $_SESSION['coords_error']): ?>
+                    <input class="input _error" type="text" placeholder="Адрес (перетащите маркер на карте)" name="coords" readonly>
+                    <p class="text-error"><?= $_SESSION['coords_error'] ?></p>
+                    <? $_SESSION['coords_error'] = null; ?>
+                <? else: ?>
+                    <input class="input" type="text" placeholder="Адрес (перетащите маркер на карте)" name="coords" readonly>
+                <? endif; ?>
+
                 <input class="input" type="tel" placeholder="Телефоны (через запятую)" name="telephone">
                 <input class="input" type="text" placeholder="Website" name="website">
-                <input class="input" type="email" placeholder="Email" name="email">
+                
+                <? if (isset($company_create) && $_SESSION['email_error']): ?>
+                    <input class="input _error" type="email" placeholder="Email" name="email">
+                    <p class="text-error"><?= $_SESSION['email_error'] ?></p>
+                    <? $_SESSION['email_error'] = null ?>
+                <? else: ?>
+                    <input class="input" type="email" placeholder="Email" name="email">
+                <? endif; ?>
             </div>
             <button class="form__button button-circle" name="company_create">
                 <svg width="2rem" height="2rem" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -69,7 +108,6 @@ $company_create = $_REQUEST['company_create'];
 
             myPlacemark.events.add('dragend', function(e){
 			const coord = e.get('target').geometry.getCoordinates();
-                console.log(coord);
                 inputCoords.value = coord[0].toString().slice(0, 5) + ', ' + coord[1].toString().slice(0, 5);
             });
 
