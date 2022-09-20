@@ -4,7 +4,7 @@ class CompanyController {
     static public function create($name, $email, $phone, $website, $lon, $lat, $category) {
         $errors = false;
 
-        if ($_SESSION['create_timeout_limit'] > $_SERVER['REQUEST_TIME']) {
+        if ($_SESSION['error_timeout_limit'] > $_SERVER['REQUEST_TIME']) {
             $_SESSION['error_timeout_limit'] = "Вы можете добавлять компанию 1 раз в течение 10 минут";
             return;
         } else {
@@ -37,10 +37,10 @@ class CompanyController {
             return;
         }
 
-        $query = null; //Company::create($name, $email, $phone, $website, $lon, $lat, $category);
+        $query = Company::create($name, $email, $phone, $website, $lon, $lat, $category);
 
         if ($query) {
-            $_SESSION['create_timeout_limit'] = $_SERVER['REQUEST_TIME'] + 600;
+            $_SESSION['error_timeout_limit'] = $_SERVER['REQUEST_TIME'] + 600;
         }
     }
 }

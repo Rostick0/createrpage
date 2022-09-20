@@ -75,6 +75,40 @@ html, body {
 
 .map {
     flex: 0 0 50%;
+
+    position: relative;
+
+    @media (max-width: 768px) {
+        min-height: 75vh;
+    }
+}
+
+.search {
+    background: rgba(255, 255, 255, 0.5);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    column-gap: 1.25rem;
+
+    padding: 1.25rem;
+
+    position: absolute;
+    bottom: 2rem;
+
+    width: 100%;
+
+    .search__input {
+        width: 100%;
+    }
+
+    .search__buttons {
+        display: flex;
+        align-items: center;
+        column-gap: 1.25rem;
+    }
+
+    z-index: 100000;
 }
 
 
