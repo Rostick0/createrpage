@@ -7,7 +7,8 @@ switch ($uri) {
         $page_path .= '/create.php';
         break;
     case '/list':
-        $page_patj .= '/list.php';
+        $page_path .= '/list.php';
+        break;
     default:
         $page_path .= '/info.php';
 }

@@ -1,0 +1,49 @@
+.list {
+    max-height: 100vh;
+
+    .list__company {
+        display: flex;
+        flex-direction: column;
+        row-gap: 1.25rem;
+
+        overflow-y: auto;
+        scrollbar-width: thin;
+        scrollbar-color: #3a095a #5e168d;
+
+        &::-webkit-scrollbar {
+            width: 12px;
+            /* ширина scrollbar */
+        }
+
+        &::-webkit-scrollbar-track {
+            background: #5e168d;
+            /* цвет дорожки */
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: #3a095a;
+        }
+
+        max-height: 100%;
+    }
+
+    .list__company_href {
+        color: #fff;
+
+        display: inline-block;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    .list__company_more {
+        color: #fff;
+    }
+
+    @media (max-width: 768px) {
+        .list__company {
+            max-height: 50vh;
+        }
+    }
+}

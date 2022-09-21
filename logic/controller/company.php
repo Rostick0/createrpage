@@ -43,6 +43,22 @@ class CompanyController {
             $_SESSION['error_timeout_limit'] = $_SERVER['REQUEST_TIME'] + 600;
         }
     }
+
+    static public function search($param, $limit, $offset) {
+        $data = Company::search($param, $limit, $offset);
+
+        if (!$data) {
+            return null;
+        }
+
+        $result = [];
+
+        foreach ($data as $value) {
+            $result[] = $value;
+        }
+
+        return $result;
+    }
 }
 
 ?>

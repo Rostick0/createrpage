@@ -13,6 +13,21 @@ class Company {
 
         return $database->query("INSERT INTO `company`(`name`, `phone`, `email`, `website`, `lon`, `lat`, `category`, `subcategory`) VALUES ('$name','$phone','$email','$website','$lon','$lat','$category','$category')");
     }
+    
+    static public function search($param, $limit, $offset) {
+        global $database;
+        
+        if ($limit) {
+            $limit = "LIMIT $limit";
+
+            if ($offset) {
+                $limit .= ", $offset";
+            }
+        } else {
+            $limit = null;
+        }
+        return $database->query("SELECT * FROM `company` WHERE `name` LIKE '%{$param}%' UNION SELECT * FROM `company` WHERE `category` LIKE '%{$param}%' UNION SELECT * FROM `company` WHERE `subcategory` LIKE '%{$param}%' $limit");
+    }
 }
 
 ?>

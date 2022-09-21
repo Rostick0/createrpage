@@ -1,3 +1,4 @@
+@charset "UTF-8";
 * {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
@@ -120,6 +121,50 @@ textarea {
 }
 .page-404 .page-404__subtitle {
   font-size: 1.25rem;
+}
+
+.list {
+  max-height: 100vh;
+}
+.list .list__company {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  row-gap: 1.25rem;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #3a095a #5e168d;
+  max-height: 100%;
+}
+.list .list__company::-webkit-scrollbar {
+  width: 12px;
+  /* ширина scrollbar */
+}
+.list .list__company::-webkit-scrollbar-track {
+  background: #5e168d;
+  /* цвет дорожки */
+}
+.list .list__company::-webkit-scrollbar-thumb {
+  background-color: #3a095a;
+}
+.list .list__company_href {
+  color: #fff;
+  display: inline-block;
+}
+.list .list__company_href:hover {
+  text-decoration: underline;
+}
+.list .list__company_more {
+  color: #fff;
+}
+@media (max-width: 768px) {
+  .list .list__company {
+    max-height: 50vh;
+  }
 }
 
 html, body {
